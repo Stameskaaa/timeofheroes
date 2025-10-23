@@ -1,0 +1,82 @@
+# =====================
+# Общие системные файлы
+# =====================
+*.log
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# =====================
+# Файлы окружения
+# =====================
+.env
+.env.local
+.env.backup
+.env.production
+.env.test
+
+# =====================
+# IDE и редакторы
+# =====================
+/.fleet
+/.idea
+/.nova
+/.vscode
+/.zed
+.phpactor.json
+.vscode/*
+!.vscode/extensions.json
+
+# =====================
+# PHP/Backend (.dnd/)
+# =====================
+/dnd/vendor/
+/dnd/.phpunit.cache
+/dnd/phpunit.result.cache
+/dnd/auth.json
+/dnd/Homestead.json
+/dnd/Homestead.yaml
+/dnd/public/build/
+/dnd/public/hot/
+/dnd/public/storage/
+/dnd/storage/*.key
+/dnd/storage/pail/
+/dnd/storage/app/
+/dnd/storage/framework/
+/dnd/storage/logs/
+/dnd/bootstrap/cache/
+
+# =====================
+# React/Frontend (.dndProject/)
+# =====================
+/dndProject/node_modules/
+/dndProject/package-lock.json
+/dndProject/dist/
+/dndProject/dist-ssr/
+/dndProject/.env
+/dndProject/.env.local
+/dndProject/.env.production.local
+/dndProject/.env.test.local
+/dndProject/npm-debug.log*
+/dndProject/yarn-debug.log*
+/dndProject/yarn-error.log*
+/dndProject/pnpm-debug.log*
+/dndProject/lerna-debug.log*
+/dndProject/tsconfig.tsbuildinfo
+/dndProject/.parcel-cache
+/dndProject/.webpack
+/dndProject/.pnp
+/dndProject/.pnp.js
+/dndProject/coverage/
+/dndProject/build/
+
+# =====================
+# Кэши и временные файлы
+# =====================
+.cache/
+.tmp/
+temp/

@@ -1,0 +1,64 @@
+.card {
+  position: relative;
+  z-index: 1;
+}
+
+.card::before {
+  position: absolute;
+  pointer-events: none;
+  content: '';
+  inset: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  padding: 0.9px;
+  border-radius: 0.7rem;
+  overflow: visible;
+  background: #f7ba2b;
+  background: var(--background);
+  filter: blur(34.5px);
+  background: #f7ba2b;
+  background: var(--background);
+  transition: opacity 0.5s;
+  opacity: 0.06;
+}
+
+.card:hover::before {
+  opacity: 0.1;
+}
+
+.card:active::before {
+  opacity: 0.2;
+}
+
+.card.1::before {
+  --background: linear-gradient(to right, #4dd0e1 0%, #26c6da 100%);
+}
+
+.card.2::before {
+  --background: linear-gradient(to right, #7e57c2 0%, #9575cd 100%);
+}
+
+.card.3::before {
+  --background: linear-gradient(to right, #e57373 0%, #ef9a9a 100%);
+}
+
+.card.4::before {
+  --background: linear-gradient(to right, #4fc3f7 0%, #29b6f6 100%);
+}
+
+.card.5::before {
+  --background: linear-gradient(to right, #ba68c8 0%, #ab47bc 100%);
+}
+
+.card.6::before {
+  --background: linear-gradient(to right, #fff176 0%, #ffee58 100%);
+}
+
+.card.7::before {
+  --background: linear-gradient(to right, #f06292 0%, #f48fb1 100%);
+}
+
+.card.8::before {
+  --background: linear-gradient(to right, #81c784 0%, #66bb6a 100%);
+}

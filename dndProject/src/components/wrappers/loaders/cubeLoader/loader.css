@@ -1,0 +1,40 @@
+@keyframes cube-loader {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.cube-loader .square {
+  animation: cube-loader 675ms ease-in-out infinite alternate;
+}
+
+#sq1 {
+  animation-delay: 0s;
+}
+#sq2 {
+  animation-delay: 75ms;
+}
+#sq3 {
+  animation-delay: 150ms;
+}
+#sq4 {
+  animation-delay: 225ms;
+}
+#sq5 {
+  animation-delay: 300ms;
+}
+#sq6 {
+  animation-delay: 375ms;
+}
+#sq7 {
+  animation-delay: 450ms;
+}
+#sq8 {
+  animation-delay: 525ms;
+}
+#sq9 {
+  animation-delay: 600ms;
+}

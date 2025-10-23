@@ -1,0 +1,41 @@
+export const EnchantmentIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 645.56 774.93" {...props}>
+    <g id="Enchantment">
+      <line
+        x1="206.12"
+        y1="744.93"
+        x2="206.12"
+        y2="30"
+        stroke="#f06292"
+        strokeWidth={60}
+        strokeLinecap="round"
+        strokeMiterlimit={10}
+        fill="none"
+      />
+      <path
+        d="m396.14,152.89c-88.06-13.93-176.12,0-176.12,0"
+        stroke="#f06292"
+        strokeWidth={60}
+        strokeLinecap="round"
+        strokeMiterlimit={10}
+        fill="none"
+      />
+      <path
+        d="m30,155.98c88.06-13.93,176.12,0,176.12,0"
+        stroke="#f06292"
+        strokeWidth={60}
+        strokeLinecap="round"
+        strokeMiterlimit={10}
+        fill="none"
+      />
+      <path
+        d="m222.54,334.48c188.06-178.5,131.34,102.99,131.34,102.99,0,0,71.64-110.45,147.93-110.93,66.18-.42,52.07,69.14-116.58,296-19.75,26.57-2.8,72.72,27.67,85.67,35.18,14.94,90.54,4.96,133.52-21.49,97.01-59.7,89.55-244.78-7.46-152.24"
+        stroke="#f06292"
+        strokeWidth={60}
+        strokeLinecap="round"
+        strokeMiterlimit={10}
+        fill="none"
+      />
+    </g>
+  </svg>
+);

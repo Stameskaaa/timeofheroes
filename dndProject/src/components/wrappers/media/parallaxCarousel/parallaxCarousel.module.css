@@ -1,0 +1,94 @@
+.embla {
+  width: 100%;
+  margin: auto;
+  --slide-height: 500px;
+  --slide-spacing: 1rem;
+  --slide-size: 70%;
+  position: relative;
+}
+
+@media (max-width: 1200px) {
+  .embla {
+    --slide-height: 400px;
+  }
+}
+@media (max-width: 800px) {
+  .embla {
+    --slide-size: 100%;
+    --slide-height: 300px;
+  }
+}
+
+.embla__viewport {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+.embla__slide {
+  transform: translate3d(0, 0, 0);
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding-left: var(--slide-spacing);
+}
+.embla__slide__img {
+  display: block;
+  height: var(--slide-height);
+  width: 100%;
+  object-fit: cover;
+}
+.embla__controls {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.embla__buttons {
+  width: max-content;
+  display: flex;
+  position: absolute;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--slide-size);
+  height: var(--slide-height);
+  pointer-events: none;
+}
+
+.embla__buttons button {
+  position: relative;
+}
+
+.embla__buttons button:first-child {
+  left: 0;
+}
+
+.embla__buttons button:last-child {
+  right: 0;
+}
+
+.embla__button:disabled {
+  color: var(--detail-high-contrast);
+}
+
+.embla__parallax {
+  height: 100%;
+  overflow: hidden;
+}
+.embla__parallax__layer {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.embla__parallax__img {
+  max-width: none;
+  flex: 0 0 calc(115% + (var(--slide-spacing) * 2));
+  object-fit: cover;
+}
