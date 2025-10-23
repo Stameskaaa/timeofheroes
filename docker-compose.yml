@@ -1,0 +1,79 @@
+version: '3.9'
+
+networks:
+  dev:
+
+services:
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - '80:80'
+    volumes:
+      - './nginx.conf:/etc/nginx/nginx.conf'
+      - './dnd/storage:/var/www/html/storage:rw'
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - dev
+
+  backend:
+    build:
+      context: ./dnd
+      dockerfile: Dockerfile
+    container_name: laravel_backend
+    volumes:
+      - './dnd:/var/www/html'
+      - './dnd/storage:/var/www/html/storage:rw'
+    environment:
+      # Database
+      - DB_CONNECTION=pgsql
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_DATABASE=laravel
+      - DB_USERNAME=laravel
+      - DB_PASSWORD=secret
+
+      # App
+      - APP_NAME="DnD App"
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - APP_URL=http://localhost
+      - APP_KEY=base64:your_app_key_here # ⚠️ ЗАМЕНИТЕ на ваш ключ!
+
+      # CORS - разрешаем фронтенду
+      - FRONTEND_URL=http://localhost
+    depends_on:
+      - db
+    networks:
+      - dev
+
+  frontend:
+    build:
+      context: ./dndProject
+      dockerfile: Dockerfile
+    container_name: react_frontend
+    environment:
+      # URL для API запросов
+      - REACT_APP_API_URL=http://localhost/api
+      - REACT_APP_BACKEND_URL=http://localhost
+    networks:
+      - dev
+
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: laravel
+      POSTGRES_USER: laravel
+      POSTGRES_PASSWORD: secret
+    ports:
+      - '5432:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - dev
+
+volumes:
+  db_data:
