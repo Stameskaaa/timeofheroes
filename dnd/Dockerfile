@@ -17,14 +17,17 @@ RUN apt-get update && apt-get install -y \
 # Установка Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
+# Увеличиваем память для Composer
+ENV COMPOSER_MEMORY_LIMIT=-1
+
 # Рабочая директория
 WORKDIR /var/www/html
 
 # Копируем только composer.json и composer.lock
 COPY composer.json composer.lock ./
 
-# Устанавливаем зависимости БЕЗ --no-dev (чтобы были все бибилиотеки)
-RUN composer install --optimize-autoloader --no-scripts
+# Устанавливаем зависимости с увеличенной памятью
+RUN composer install --optimize-autoloader --no-scripts --verbose
 
 # Копируем весь проект
 COPY . .
