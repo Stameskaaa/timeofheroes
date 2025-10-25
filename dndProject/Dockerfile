@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN NODE_OPTIONS="--max-old-space-size=1024" npm run build -- --mode production
+RUN NODE_OPTIONS="--max-old-space-size=1024" npm run build
 FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY nginx-spa.conf /etc/nginx/conf.d/default.conf

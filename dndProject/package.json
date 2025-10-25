@@ -6,7 +6,7 @@
   "homepage": "https://stameskaaa.github.io/dndProject",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build -- --mode production",
     "lint": "eslint .",
     "preview": "vite preview",
     "server": "json-server --watch db.json --port 3001",
