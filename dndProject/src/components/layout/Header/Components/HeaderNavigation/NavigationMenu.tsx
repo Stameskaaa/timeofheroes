@@ -1,6 +1,4 @@
 import classNames from 'classnames';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
@@ -11,6 +9,7 @@ import { ROUTES } from '@/routes/routes';
 import { Image } from '@/components/wrappers/image/Image';
 import { Text } from '@/components/wrappers/typography/Text';
 import { SmartLink } from '@/components/wrappers/navigation/link/SmartLink';
+import { Separator } from '@/components/ui/separator';
 
 export const HeaderNavigation = () => {
   const { getTopNavigationRoutes } = useGetNavigationPaths();
@@ -47,7 +46,7 @@ export const HeaderNavigation = () => {
     <NavigationMenu.Root
       data-nav-menu-root
       value={activeIndex}
-      className={classNames(styles.Root, '!justify-end')}>
+      className={classNames(styles.Root, 'justify-end!')}>
       <NavigationMenu.List className={classNames(styles.MenuList, 'flex items-center gap-3.5')}>
         {filteredRoutes?.map(({ title, children, src, fullPath }, i) => {
           const indexValue = `${i}`;
@@ -60,8 +59,8 @@ export const HeaderNavigation = () => {
                 onClick={() => handleClick(indexValue)}
                 className={classNames(
                   styles.Trigger,
-                  'hover:bg-brand-300 select-none rounded-md shadow-bottom-black py-[6px] px-4 h-auto cursor-pointer flex items-center gap-1',
-                  isRootPath(fullPath) ? 'border-1 border-brand-200' : '',
+                  'hover:bg-brand-300 select-none rounded-md shadow-bottom-black py-1.5 px-4 h-auto cursor-pointer flex items-center gap-1',
+                  isRootPath(fullPath) ? 'border border-brand-200' : '',
                   isActive ? 'bg-brand-400' : '',
                 )}
                 data-state={isActive ? 'open' : 'closed'}>
@@ -94,7 +93,7 @@ export const HeaderNavigation = () => {
                 <div
                   style={{ overscrollBehavior: 'contain' }}
                   className="flex gap-2 flex-col w-full py-3 pr-3 overflow-auto">
-                  {children?.map(({ title: cTitle, fullPath: cPath }, j) => (
+                  {children?.map(({ title: cTitle, description, fullPath: cPath }, j) => (
                     <NavigationMenu.Link key={j} asChild>
                       <SmartLink
                         to={cPath}
@@ -102,12 +101,14 @@ export const HeaderNavigation = () => {
                           handleClick('');
                         }}
                         className={classNames(
-                          'py-2 px-3 hover:bg-brand-300 rounded-md transition-color duration-200 cursor-pointer',
-                          isSubPath(cPath) ? 'border-1 border-brand-200 bg-brand-500' : '',
+                          'py-2 px-3 border-brand-200 hover:bg-brand-300 rounded-md transition-color duration-200 cursor-pointer',
+                          isSubPath(cPath) ? 'border border-brand-100 bg-brand-400' : '',
                         )}>
-                        <Text color="brand-100">{cTitle}</Text>
-                        <Text color="text-description" className="text-text-secondary">
+                        <Text weight="bold" color="brand-100">
                           {cTitle}
+                        </Text>
+                        <Text size="sm" color="text-description">
+                          {description || ''}
                         </Text>
                       </SmartLink>
                     </NavigationMenu.Link>
@@ -128,7 +129,7 @@ export const HeaderNavigation = () => {
         <NavigationMenu.Viewport
           className={classNames(
             styles.Viewport,
-            'bg-brand-400 rounded-md !min-w-[500px] min-h-[380px] shadow-2xl/50 shadow-black border-none !mt-2.5 flex gap-2 z-10',
+            'bg-brand-400 rounded-md min-w-[500px]! min-h-[380px] shadow-2xl/50 shadow-black border-none mt-2.5! flex gap-2 z-10',
           )}
           style={
             {

@@ -28,28 +28,12 @@ const RegistrationPage = () => {
     if (data.password.length < 6) {
       setError('password', { message: 'Длина пароля должна быть не менее 6 символов' });
     }
-
-    registration(data)
-      .unwrap()
-      .then((data) => {
-        const responseData = data as AuthResponse;
-        toast.success('Регистрация прошла успешно');
-        dispatch(
-          setToken({ access: responseData.accessToken, refresh: responseData.refreshToken }),
-        );
-      })
-      .catch((e) => {
-        if (e?.data?.errors?.email?.[0] === 'The email has already been taken.') {
-          toast.error('Такой email уже занят');
-        } else {
-          toast.error('Ошибка при регистрации');
-        }
-      });
+    registration(data);
   }
 
   return (
     <Section screen fixedWidth className="grid place-items-center">
-      <div className="w-full p-8 bg-brand-500 border-brand-200 border-1 rounded-sm flex flex-col gap-4 max-w-[500px]">
+      <div className="w-full p-8 bg-brand-500 border-brand-200 border rounded-sm flex flex-col gap-4 max-w-[500px]">
         <DragonIcon className="w-[60px] h-[60px]" />
         <Text className="text-center" size="xl">
           Регистрация

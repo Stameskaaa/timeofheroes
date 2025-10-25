@@ -66,7 +66,7 @@ export const FavoritesPage = () => {
 
 const Container = ({ children, title }: { children: ReactNode; title: string }) => {
   return (
-    <div className="bg-brand-400 border-1 border-brand-200 max-w-[800px] w-full p-4 rounded-sm">
+    <div className="bg-brand-400 border border-brand-200 max-w-[800px] w-full p-4 rounded-sm">
       <Text size="2xl" className="text-center mb-4">
         {title}
       </Text>

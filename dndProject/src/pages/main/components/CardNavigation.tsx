@@ -41,13 +41,13 @@ export const CardNavigation = () => {
   return (
     <Section fixedWidth screen className="mx-auto flex items-center justify-center flex-col ">
       <MotionText
-        className="mb-14"
+        className="mb-14 text-center"
         size="3xl"
         initial={{ opacity: 0, y: -40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true, amount: 0.4 }}>
-        АКТУАЛЬНЫЕ СОБЫТИЯ И ПЛАНЫ
+        Актуальные события и планы
       </MotionText>
 
       <motion.div
@@ -69,10 +69,10 @@ export const CardNavigation = () => {
                 onClick={() => navigatePath(path)}
                 key={i}
                 style={{ padding: 0 }}
-                className="flex-shrink-0 cursor-pointer group max-w-[440px] h-[440px] min-w-[400px] min-h-[400px] flex first:ml-0 ml-[-95px]">
+                className="shrink-0 cursor-pointer group max-w-[440px] h-[440px] min-w-[400px] min-h-[400px] flex first:ml-0 ml-[-95px]">
                 <article className="flex flex-col w-full h-full overflow-hidden gap-2">
                   <div
-                    className="w-full h-[calc(100%_-_64px)] relative overflow-hidden group"
+                    className="w-full h-[calc(100%-64px)] relative overflow-hidden group"
                     style={{
                       WebkitClipPath: 'polygon(0 0, 80% 0, 100% 100%, 20% 100%)',
                       clipPath: 'polygon(0 0, 80% 0, 100% 100%, 20% 100%)',
@@ -85,7 +85,7 @@ export const CardNavigation = () => {
                     <Image
                       src={src}
                       alt="Фотография навигации"
-                      className="!block pointer-events-none -z-1"
+                      className="block! pointer-events-none -z-1"
                     />
                   </div>
 

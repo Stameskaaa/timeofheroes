@@ -37,7 +37,7 @@ export function Header() {
   return (
     <motion.header
       style={{ zIndex: HeaderIndex }}
-      className={classNames(defaultClass, isScrolled ? '!bg-brand-400 shadow-xl' : '')}>
+      className={classNames(defaultClass, isScrolled ? 'bg-brand-400! shadow-xl' : '')}>
       <div style={{ height: HeaderHeight }} className="w-full shadow-xl flex justify-center">
         <Section fixedWidth={true} className="flex items-center py-4">
           {location.pathname === '/' && <ScrollProgress />}
@@ -45,7 +45,7 @@ export function Header() {
           {width > 1024 ? (
             <HeaderNavigation />
           ) : (
-            <div className="w-[20px] h-[20px]">
+            <div className="w-5 h-5">
               <ToggleNavigation />
             </div>
           )}

@@ -32,6 +32,7 @@ export const worldApi = createApi({
         method: 'POST',
         body: data,
       }),
+      providesTags: ['worldList'],
     }),
     getWorldById: builder.query<World, { id: number }>({
       query: ({ id }) => ({

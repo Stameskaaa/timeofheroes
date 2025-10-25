@@ -1,7 +1,6 @@
 import { toast } from 'sonner';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { ACCESS_TOKEN_STORAGE_KEY, REFRESH_TOKEN_STORAGE_KEY, setToken } from './authSlice';
-import { profileApi } from '../profile/api';
 import { Auth, AuthResponse } from './types';
 import { clearUrl } from './../../constants/api';
 import { RootState } from '@/store/store';
@@ -19,10 +18,18 @@ const rawBaseQuery = fetchBaseQuery({
 
 export async function baseQuery(args: any, api: any, extraOptions: any) {
   const state = api.getState() as RootState;
+
+  let user = state.profile;
   const token = state?.auth?.accessToken || localStorage.getItem(ACCESS_TOKEN_STORAGE_KEY);
   const refreshToken = state?.auth?.refreshToken || localStorage.getItem(REFRESH_TOKEN_STORAGE_KEY);
 
-  const url = args.fullUrl ?? `${clearUrl}${token ? '/management' : '/api'}${args.url ?? ''}`;
+  const haveRights =
+    args.haveRights !== undefined
+      ? args.haveRights
+      : (token && user && user?.role === 'admin') || user?.role === 'editor';
+
+  const basePath = haveRights ? '/management' : '/api';
+  const url = args.fullUrl ?? `${clearUrl}${basePath}${args.url ?? ''}`;
 
   const requestArgs = {
     ...args,
@@ -35,19 +42,27 @@ export async function baseQuery(args: any, api: any, extraOptions: any) {
   if (response?.error?.status === 401 && refreshToken) {
     try {
       const refreshResponse = await rawBaseQuery(
-        { url: `${clearUrl}/management/refresh`, body: { refreshToken }, method: 'POST' },
+        {
+          url: `${clearUrl}/management/refresh`,
+          body: { refreshToken },
+          method: 'POST',
+        },
         api,
         extraOptions,
       );
 
       const refreshData = refreshResponse?.data as AuthResponse;
-
       const newToken = refreshData?.accessToken;
+
       if (!newToken) throw new Error('No token in refresh response');
 
       api.dispatch(setToken({ access: newToken, refresh: refreshData.refreshToken }));
+
       response = await rawBaseQuery(
-        { ...requestArgs, headers: { Authorization: `Bearer ${newToken}` } },
+        {
+          ...requestArgs,
+          headers: { Authorization: `Bearer ${newToken}` },
+        },
         api,
         extraOptions,
       );
@@ -65,10 +80,11 @@ export const authApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: clearUrl + '/management' }),
   endpoints: (builder) => ({
     register: builder.mutation<AuthResponse, Auth>({
-      async onQueryStarted(_, { queryFulfilled }) {
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
-          await queryFulfilled;
+          const { data } = await queryFulfilled;
           toast.success('Регистрация прошла успешно');
+          dispatch(setToken({ access: data.accessToken, refresh: data.refreshToken }));
         } catch (e: any) {
           if (e?.data?.errors?.email?.[0] === 'The email has already been taken.') {
             toast.error('Такой email уже занят');
@@ -89,7 +105,6 @@ export const authApi = createApi({
           const { data } = await queryFulfilled;
           toast.success('Авторизация прошла успешно');
           dispatch(setToken({ access: data.accessToken, refresh: data.refreshToken }));
-          dispatch(profileApi.util.invalidateTags(['users']));
         } catch (err) {
           toast.error('Ошибка при авторизации');
         }

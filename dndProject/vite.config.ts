@@ -10,7 +10,6 @@ export default defineConfig({
     port: 5173,
     allowedHosts: true,
   },
-  // base: '/dndProject/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -19,5 +18,14 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
+    minify: 'esbuild',
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+        },
+      },
+    },
   },
 });

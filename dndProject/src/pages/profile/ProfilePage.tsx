@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { LogOutIcon } from 'lucide-react';
-import { setToken } from '@/features/auth/authSlice';
 import {
   useChangeUserRoleMutation,
   useDeleteUserMutation,
   useGetProfileQuery,
   useGetUsersQuery,
 } from '@/features/profile/api';
+import { setToken } from '@/features/auth/authSlice';
+import { setProfile } from '@/features/profile/profileSlice';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -15,13 +16,16 @@ import { Text } from '@/components/wrappers/typography/Text';
 import { Spinner } from '@/components/wrappers/loaders/spinner/Spinner';
 import { Section } from '@/components/wrappers/sections/section/Section';
 import { AsyncWrapper } from '@/components/wrappers/asyncWrapper/AsyncWrapper';
-import { Pagination } from '@/components/wrappers/navigation/pagination/Pagination';
 import { ModalWindow } from '@/components/wrappers/modals/modalWindow/ModalWindow';
+import { Pagination } from '@/components/wrappers/navigation/pagination/Pagination';
 
 const ProfilePage = () => {
   const { currentPage, limit, onPageChange } = usePagination({ defaultLimit: 8 });
-  const { data: profile, isLoading: profileLoading } = useGetProfileQuery();
-  const { data: users, isLoading: usersLoading } = useGetUsersQuery({ limit, page: currentPage });
+  const { data: profile, isLoading } = useGetProfileQuery();
+  const { data: users, isLoading: usersLoading } = useGetUsersQuery(
+    { limit, page: currentPage },
+    { skip: !(profile?.role === 'admin') },
+  );
   const token = useAppSelector((state) => state.auth.accessToken);
   const dispatch = useAppDispatch();
   const [changeRole, { isLoading: chageLoading }] = useChangeUserRoleMutation();
@@ -30,11 +34,12 @@ const ProfilePage = () => {
 
   function logout() {
     dispatch(setToken({ access: '', refresh: '' }));
+    dispatch(setProfile(null));
   }
 
   return (
     <Section className="flex justify-center" fixedWidth screen>
-      <AsyncWrapper isLoading={profileLoading}>
+      <AsyncWrapper isLoading={isLoading}>
         <div className="flex flex-wrap gap-4 flex-1 py-4">
           <div className="sticky top-22 bg-brand-400 flex-1 max-w-[400px] rounded-sm p-4 max-h-max flex flex-col gap-2 min-w-[300px]">
             <Text>Имя: {profile?.name}</Text>

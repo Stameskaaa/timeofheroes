@@ -29,10 +29,9 @@ type MotionDivProps = HTMLMotionProps<'div'> & {
   zIndex?: number;
 };
 
-function DialogContent({ className, children, open, zIndex, ...props }: MotionDivProps) {
+function DialogContent({ className, children, open, zIndex, setOpen, ...props }: MotionDivProps) {
   const id = useId();
   useScrollLock(id, open);
-  const { setOpen } = props;
 
   return (
     <AnimatePresence mode="wait">

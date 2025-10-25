@@ -97,6 +97,7 @@ export const routesWrapper = (routes: RouteNode[]): RouteObject[] => {
 export type RouteNode = {
   id?: string;
   title?: string;
+  description?: string;
   path?: string;
   fullPath: string;
   element?: ReactNode;
@@ -106,6 +107,7 @@ export type RouteNode = {
   loader?: boolean;
   src?: string;
   ignoreInActive?: boolean;
+  withRules?: boolean;
   unAuthIgnore?: boolean;
   navigationIgnore?: boolean;
 };
@@ -132,6 +134,7 @@ export const ROUTES: RouteNode[] = [
         children: [
           {
             title: 'Главная',
+            description: 'Познакомьтесь с нашим клубом',
             path: '/',
             fullPath: '/',
             element: <MainPage key="mainpage" />,
@@ -140,6 +143,7 @@ export const ROUTES: RouteNode[] = [
           {
             title: 'Новости',
             icon: Newspaper,
+            description: 'Последние события клуба',
             path: 'news',
             fullPath: '/news',
             element: <NewsPage />,
@@ -154,11 +158,13 @@ export const ROUTES: RouteNode[] = [
             title: 'Новым игрокам',
             path: 'newbies',
             fullPath: '/newbies',
+            description: 'Как отправиться в первое приключение',
             element: <NewbiesPage />,
             icon: UserPlus,
           },
           {
             title: 'Избранное',
+            description: 'Ваши заметки для игры',
             path: 'favorites',
             fullPath: '/favorites',
             element: <FavoritesPage />,
@@ -167,8 +173,10 @@ export const ROUTES: RouteNode[] = [
 
           {
             title: 'Управление данными',
+            description: 'Редактура и добавление контента',
             path: 'edit',
             fullPath: '/edit',
+            withRules: true,
             unAuthIgnore: true,
             element: (
               <Suspense fallback={<FallbackLoader />}>
@@ -267,6 +275,7 @@ export const ROUTES: RouteNode[] = [
           },
           {
             title: 'Профиль',
+            description: 'Данные аккаунта',
             path: 'profile',
             fullPath: 'profile',
             element: (
@@ -288,6 +297,7 @@ export const ROUTES: RouteNode[] = [
         children: [
           {
             title: 'Миры',
+            description: 'Где начнётся ваша дорога приключений',
             path: 'worlds',
             fullPath: '/universe/worlds',
             element: <WorldsPage />,
@@ -301,6 +311,7 @@ export const ROUTES: RouteNode[] = [
           },
           {
             title: 'Локации',
+            description: 'Уголки мира которые стоит посетить',
             path: 'locations',
             fullPath: '/universe/locations',
             element: <LocationsPage />,
@@ -314,6 +325,7 @@ export const ROUTES: RouteNode[] = [
           },
           {
             title: 'Личности',
+            description: 'Кто может встретиться в вашем пути',
             path: 'npc',
             fullPath: '/universe/npc',
             element: <NPCListPage />,
@@ -327,6 +339,7 @@ export const ROUTES: RouteNode[] = [
           },
           {
             title: 'Бестиарий',
+            description: 'Враг, добыча или питомец выбор ваш',
             path: 'bestiary',
             fullPath: '/universe/bestiary',
             element: <BeastListPage />,
@@ -340,6 +353,7 @@ export const ROUTES: RouteNode[] = [
           },
           {
             title: 'Рейдбоссы',
+            description: 'Скованные - враги всего мира и его жертвы',
             path: 'raidbosses',
             fullPath: '/universe/raidbosses',
             element: <RaidBossListPage />,
@@ -364,6 +378,7 @@ export const ROUTES: RouteNode[] = [
         children: [
           {
             title: 'Классы',
+            description: 'Определите роль своего героя',
             path: 'classes',
             fullPath: '/character/classes',
             element: <ClassesPage />,
@@ -378,6 +393,7 @@ export const ROUTES: RouteNode[] = [
           },
           {
             title: 'Виды',
+            description: 'Кем вы родились в этом мире',
             path: 'races',
             fullPath: '/character/races',
             icon: Eye,
@@ -392,13 +408,13 @@ export const ROUTES: RouteNode[] = [
           },
           {
             title: 'Происхождения',
+            description: 'Выберите чему вас научило прошлое',
             path: 'origins',
             fullPath: '/character/origins',
             element: <OriginPage />,
             icon: Package,
             src: 'https://cdna.artstation.com/p/assets/images/images/036/497/596/4k/pablo-del-molino-thegate02.jpg?1617824920',
           },
-
           {
             path: '/character/origins/:id',
             fullPath: '/character/origins/:id',
@@ -407,6 +423,7 @@ export const ROUTES: RouteNode[] = [
           },
           {
             title: 'Черты',
+            description: 'Уникальные способности персонажей',
             path: 'traits',
             icon: Sparkle,
             fullPath: '/character/traits',
@@ -421,6 +438,7 @@ export const ROUTES: RouteNode[] = [
           },
           {
             title: 'Заклинания',
+            description: 'Какая магия может быть подвластна вам',
             path: 'spells',
             fullPath: '/character/spells',
             src: 'https://cdnb.artstation.com/p/assets/images/images/034/041/739/4k/anato-finnstark-web-petit.jpg?1611241472',
@@ -445,6 +463,7 @@ export const ROUTES: RouteNode[] = [
         children: [
           {
             title: 'Правила клуба',
+            description: 'Пользовательское соглашение и т.д.',
             path: 'rules',
             fullPath: '/resources/rules',
             element: <ClubRulesPage />,
@@ -453,6 +472,7 @@ export const ROUTES: RouteNode[] = [
           },
           {
             title: 'Правила D&D',
+            description: 'Глоссарий официальных правил',
             path: 'dnd-rules',
             fullPath: '/resources/dnd-rules',
             element: <DnDRules />,
@@ -460,6 +480,7 @@ export const ROUTES: RouteNode[] = [
           },
           {
             title: 'Домашние правила',
+            description: 'Клубные дополнения к правилам D&D',
             path: 'home-rules',
             fullPath: '/resources/home-rules',
             children: [{ path: ':id', fullPath: '/resources/home-rules/:id' }],

@@ -88,7 +88,7 @@ export function FAQ() {
       className="flex my-20 flex-col items-center justify-center mx-auto"
       paddingX="empty">
       <Section className="bg-brand-500 border-t-2 border-b-2 border-brand-200 flex flex-col gap-4 py-16 items-center">
-        <Text className="mb-14" size="3xl">
+        <Text className="mb-14 text-center" size="3xl">
           Часто задаваемые вопросы
         </Text>
         <Section

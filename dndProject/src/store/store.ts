@@ -10,6 +10,7 @@ import { traitsApi } from '@/features/traits/api';
 import { spellsApi } from '@/features/spells/api';
 import { rulesApi } from './../features/rules/api';
 import worlds from '@/features/worlds/worldsSlice';
+import profile from '@/features/profile/profileSlice';
 import { profileApi } from '@/features/profile/api';
 import { countryApi } from '@/features/country/api';
 import { classesApi } from '@/features/classes/api';
@@ -43,6 +44,7 @@ export const store = configureStore({
     [profileApi.reducerPath]: profileApi.reducer,
     auth,
     worlds,
+    profile,
     classes,
     favorites,
     characteristic,

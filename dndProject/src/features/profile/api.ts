@@ -1,15 +1,23 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { baseQuery } from '../auth/api';
 import { User } from './types';
+import { baseQuery } from '../auth/api';
 import { GetList, ListQuery } from '../types';
+import { setProfile } from './profileSlice';
 
 export const profileApi = createApi({
-  tagTypes: ['users'],
+  tagTypes: ['users', 'user'],
   reducerPath: 'profileApi',
   baseQuery,
   endpoints: (builder) => ({
     getProfile: builder.query<User, void>({
-      query: () => ({ url: '/me' }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setProfile(data));
+        } catch (e: any) {}
+      },
+      providesTags: ['user'],
+      query: () => ({ url: '/me', haveRights: true }),
     }),
     getUsers: builder.query<GetList<User & { id: number }>, ListQuery | void>({
       providesTags: ['users'],
@@ -31,6 +39,7 @@ export const profileApi = createApi({
 
 export const {
   useGetProfileQuery,
+  useLazyGetProfileQuery,
   useGetUsersQuery,
   useDeleteUserMutation,
   useChangeUserRoleMutation,
