@@ -22,8 +22,8 @@ services:
       context: ./dnd
       dockerfile: Dockerfile
     container_name: laravel_backend
-    volumes:
-      - './dnd/storage:/var/www/html/storage:rw'
+    # volumes:
+    #   - './dnd/storage:/var/www/html/storage:rw'
     # volumes:
     # - './dnd:/var/www/html'
     # - './dnd/storage:/var/www/html/storage:rw'

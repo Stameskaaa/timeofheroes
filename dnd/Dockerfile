@@ -32,11 +32,13 @@ RUN composer install --optimize-autoloader --no-scripts --verbose
 # Копируем весь проект
 COPY . .
 
-# СОЗДАЕМ ВСЕ НУЖНЫЕ ПАПКИ ДЛЯ LARAVEL
+# СОЗДАЕМ ВСЕ ПАПКИ ДЛЯ LARAVEL (перед установкой прав)
 RUN mkdir -p storage/framework/cache \
     && mkdir -p storage/framework/sessions \
     && mkdir -p storage/framework/views \
     && mkdir -p storage/logs \
+    && mkdir -p storage/app \
+    && mkdir -p storage/app/public \
     && mkdir -p bootstrap/cache
 
 # Устанавливаем права
