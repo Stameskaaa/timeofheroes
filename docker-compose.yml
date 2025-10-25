@@ -24,7 +24,7 @@ services:
     container_name: laravel_backend
     volumes:
       # - './dnd:/var/www/html'
-      - './dnd/storage:/var/www/html/storage:rw'
+      # - './dnd/storage:/var/www/html/storage:rw'
     environment:
       # Database
       - DB_CONNECTION=pgsql
