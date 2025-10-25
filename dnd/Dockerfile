@@ -29,9 +29,10 @@ RUN composer install --no-dev --optimize-autoloader --no-scripts
 # Копируем весь проект
 COPY . .
 
-# Устанавливаем права на storage и bootstrap/cache
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+# СОЗДАЕМ папки если их нет и устанавливаем права
+RUN mkdir -p storage bootstrap/cache \
+    && chown -R www-data:www-data storage bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
 
 # Запускаем post-autoload-dump скрипты вручную
 RUN composer dump-autoload \
