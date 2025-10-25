@@ -23,8 +23,8 @@ WORKDIR /var/www/html
 # Копируем только composer.json и composer.lock
 COPY composer.json composer.lock ./
 
-# Устанавливаем зависимости без запуска скриптов
-RUN composer install --no-dev --optimize-autoloader --no-scripts
+# Устанавливаем зависимости БЕЗ --no-dev (чтобы были все бибилиотеки)
+RUN composer install --optimize-autoloader --no-scripts
 
 # Копируем весь проект
 COPY . .
