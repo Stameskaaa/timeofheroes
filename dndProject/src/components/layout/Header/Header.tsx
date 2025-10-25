@@ -1,17 +1,14 @@
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
-import { LogOutIcon } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
-import { setToken } from '@/features/auth/authSlice';
 import { HeaderIndex } from '@/constants/zIndex';
 import { HeaderHeight } from '@/constants/heights';
-import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
-import { Button } from '@/components/ui/button';
+import { useAppSelector } from '@/hooks/reduxHooks';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
 import { HeaderTitle } from './Components/headerTitle/HeaderTitle';
 import { Section } from '@/components/wrappers/sections/section/Section';
-import { HeaderNavigation } from './Components/headerNavigation/NavigationMenu';
+import { HeaderNavigation } from './Components/HeaderNavigation/NavigationMenu';
 import ScrollProgress from '@/components/wrappers/scrollProgress/ScrollProgress';
 import { ToggleNavigation } from '@/components/wrappers/navigation/toggleNavigation/ToggleNavigation';
 
