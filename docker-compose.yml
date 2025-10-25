@@ -55,10 +55,6 @@ services:
       context: ./dndProject
       dockerfile: Dockerfile
     container_name: react_frontend
-    environment:
-      # URL для API запросов
-      - REACT_APP_API_URL=http://localhost/api
-      - REACT_APP_BACKEND_URL=http://localhost
     networks:
       - dev
 
