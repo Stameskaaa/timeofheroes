@@ -49,7 +49,7 @@ export const DnDRules = () => {
   };
 
   return (
-    <Section paddingY="medium" fixedWidth screen className="flex flex-col">
+    <Section paddingY="medium" fixedWidth className="flex min-h-[80vh] flex-col">
       <Text as="span" className="mx-auto mb-4" size="3xl">
         Правила D&D
       </Text>
@@ -91,7 +91,7 @@ export const DnDRules = () => {
           ))}
           {!!data?.meta?.total && (
             <Pagination
-              className="mt-10"
+              className="mt-auto"
               onPageChange={onPageChange}
               total={data.meta.total}
               currentPage={currentPage}
