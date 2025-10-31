@@ -37,7 +37,7 @@ export const AnimatedGridList = ({
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className={classNames('w-full grid justify-items-center')}
+      className={classNames('w-full grid')}
       style={{
         gridTemplateColumns: `repeat(auto-fit, minmax(${minW}px, 1fr))`,
         gap: `${gap * 0.25}rem`,
