@@ -50,8 +50,11 @@ export const CharacteristicForm: React.FC<CharacteristicFormProps> = ({
       {isLoading ? (
         <Spinner className="m-auto" />
       ) : (
-        data?.data.map(({ id, name: characteristicName }) => {
-          const selectedValue = currentValue?.find((x) => x.id === id)?.value?.toString() ?? '';
+        data?.data?.map(({ id, name: characteristicName }) => {
+          const selectedValue =
+            (Array.isArray(currentValue) ? currentValue : [])
+              ?.find((x) => x.id === id)
+              ?.value?.toString() ?? '';
           return (
             <div key={id} className="flex flex-col gap-1 shrink">
               <Text>{characteristicName}</Text>

@@ -30,7 +30,7 @@ const EditSpell = () => {
     },
   });
   const { control } = methods;
-  const { data: classes, isLoading: classesLoading } = useGetClassListQuery();
+  const { data: classes, isLoading: classesLoading } = useGetClassListQuery({ limit: 200 });
 
   return (
     <EditList<Spell>

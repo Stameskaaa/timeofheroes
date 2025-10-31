@@ -28,6 +28,8 @@ const EditHostileCreatures = () => {
       mdStatblock: '',
       typeId: '',
       hp: '',
+      status: '',
+      characteristics: [],
       armorClass: '',
       speed: '',
       sizeId: '',
