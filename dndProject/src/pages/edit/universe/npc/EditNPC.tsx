@@ -92,7 +92,7 @@ const EditNPC = () => {
       <Input
         className="flex-1"
         message="Статус"
-        placeholder="Главный юстициал"
+        placeholder="Главный юстициар"
         name="status"
         control={control}
       />

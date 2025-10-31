@@ -1,8 +1,9 @@
 import { News } from '@/features/news/types';
-import { Button } from '@/components/ui/button';
-import { Text } from '@/components/wrappers/typography/Text';
 import { useNavigatePath } from '@/hooks/useNavigatePath';
+import { formatDateTimeDetailed } from '@/helpers/dateHelpers';
+import { Button } from '@/components/ui/button';
 import { Image } from '@/components/wrappers/image/Image';
+import { Text } from '@/components/wrappers/typography/Text';
 
 export const NewsCard = (data: News) => {
   const { createdAt, name, shortDescription, src, id } = data;
@@ -12,15 +13,15 @@ export const NewsCard = (data: News) => {
     <div
       onClick={() => navigatePath(`/news/${id}`, { newsData: data })}
       className="flex cursor-pointer flex-col border h-full border-brand-300 hover:border-brand-100 hover:shadow-md transition-all duration-300 rounded-md bg-brand-400 p-4 gap-3">
-      <Text color="text-description" className="uppercase text-xs tracking-wide">
-        {createdAt}
+      <Text color="text-description" className="text-xs tracking-wide">
+        {formatDateTimeDetailed(createdAt)}
       </Text>
 
       <Text size="xl" className="line-clamp-2 leading-tight">
         {name}
       </Text>
 
-      <Image src={src} alt="Картинка новости" className="!h-[220px] rounded-md" />
+      <Image src={src} alt="Картинка новости" className="h-[220px]! rounded-md" />
 
       <Text color="text-secondary" size="sm" className="line-clamp-3">
         {shortDescription}

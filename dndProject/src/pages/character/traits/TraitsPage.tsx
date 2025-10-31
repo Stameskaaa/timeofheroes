@@ -26,8 +26,8 @@ export const TraitsPage = () => {
       <Filters selectors={[traitSelector]} control={control} inputName="name" />
       <AsyncWrapper isLoading={isLoading} isError={isError}>
         <AnimatedGridList>
-          {data?.data?.map((trait, i) => (
-            <TraitCard onClick={() => setOpenedTrait(trait)} key={i} traitData={trait} />
+          {data?.data?.map((trait) => (
+            <TraitCard onClick={() => setOpenedTrait(trait)} key={trait.id} traitData={trait} />
           ))}
         </AnimatedGridList>
         <CharacterModalWrapper

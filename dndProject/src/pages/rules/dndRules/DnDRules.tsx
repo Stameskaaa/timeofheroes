@@ -21,7 +21,7 @@ export const DnDRules = () => {
   const name = watch('name');
   const tags = watch('tags');
   const debouncedName = useDebounce(name);
-  const { currentPage, limit, onPageChange } = usePagination({ defaultLimit: 50 });
+  const { currentPage, limit, onPageChange } = usePagination({ defaultLimit: 30 });
 
   const { data, isLoading, isError } = useGetRulesListQuery({
     type: 'dnd',

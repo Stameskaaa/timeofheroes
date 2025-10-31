@@ -7,10 +7,17 @@ import { Text } from '@/components/wrappers/typography/Text';
 import { Input } from '@/components/wrappers/forms/input/Input';
 import { Section } from '@/components/wrappers/sections/section/Section';
 import { AsyncWrapper } from '@/components/wrappers/asyncWrapper/AsyncWrapper';
+import { Pagination } from '@/components/wrappers/navigation/pagination/Pagination';
+import { usePagination } from '@/hooks/usePagination';
 
 export const NewsPage = () => {
   const { control, debouncedName } = useSearchByQuery();
-  const { data, isLoading, isError } = useGetNewsListQuery({ query: debouncedName });
+  const { currentPage, limit, onPageChange } = usePagination({ defaultLimit: 12 });
+  const { data, isLoading, isError } = useGetNewsListQuery({
+    query: debouncedName,
+    limit,
+    page: currentPage,
+  });
 
   return (
     <AsyncWrapper isError={isError} isLoading={isLoading}>
@@ -24,7 +31,7 @@ export const NewsPage = () => {
         <div className="flex flex-wrap justify-center gap-6">
           {data?.data?.map((news, index) => (
             <motion.div
-              className="flex-grow basis-[300px] max-w-[600px]"
+              className="grow basis-[300px] max-w-[600px]"
               key={news.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -33,6 +40,16 @@ export const NewsPage = () => {
             </motion.div>
           ))}
         </div>
+
+        {!!data?.meta?.total && (
+          <Pagination
+            className="mt-auto"
+            onPageChange={onPageChange}
+            total={data.meta.total}
+            currentPage={currentPage}
+            limit={limit}
+          />
+        )}
       </Section>
     </AsyncWrapper>
   );

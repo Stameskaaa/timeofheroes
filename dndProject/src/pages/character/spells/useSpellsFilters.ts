@@ -34,7 +34,7 @@ export const useSpellsFilters = () => {
   const schoolId = watch('spellSchool');
   const level = watch('spellCircle');
   const characterClassId = watch('spellClass');
-  const { classes } = useClassesData();
+  const { classes, isLoading } = useClassesData();
   const debouncedName = useDebounce(name);
 
   const spellSelectors = [
@@ -61,6 +61,7 @@ export const useSpellsFilters = () => {
         id,
         value: name,
       })),
+      disabled: classes?.length === 0 || isLoading,
     },
   ];
 

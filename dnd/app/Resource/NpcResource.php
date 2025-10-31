@@ -23,7 +23,7 @@ class NpcResource extends JsonResource
             'worlds' => WorldResource::collection($this->whenLoaded('worlds')) ?? [],
             'worldIds' => ($this->worlds ?? collect())->pluck('id'),
             'countries' => CountryResource::collection($this->whenLoaded('countries')) ?? [],
-            'countryIds' => ($this->worlds ?? collect())->pluck('id'),
+            'countryIds' => ($this->countries ?? collect())->pluck('id'),
             'createdAt' => $this->created_at?->toDateTimeString(),
             'updatedAt' => $this->updated_at?->toDateTimeString(),
         ];

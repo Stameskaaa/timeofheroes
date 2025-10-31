@@ -62,16 +62,16 @@ export const EditList = <T extends { id?: number | null }>({
   const fetching = isFetching && !isLoading;
 
   return (
-    <div className="flex flex-col relative bg-brand-3 border-1 rounded-md border-brand-300 bg-brand-500 flex-1 h-full p-4 gap-3 min-h-0">
+    <div className="flex flex-col relative bg-brand-3 border rounded-md border-brand-300 bg-brand-500 flex-1 h-full p-4 gap-3 min-h-0">
       <div className="flex flex-col flex-1 h-full gap-3">
-        <div className="flex gap-2 h-[36px]">
+        <div className="flex gap-2 h-9">
           <Input
             placeholder="Поиск по названию..."
             className="flex-4"
             control={inputControl}
             name="inputValue"
           />
-          <Button variant="secondary" className="min-w-[160px]" onClick={() => setOpen(true)}>
+          <Button variant="secondary" className="min-w-40" onClick={() => setOpen(true)}>
             Создать
           </Button>
         </div>
@@ -100,7 +100,7 @@ export const EditList = <T extends { id?: number | null }>({
 
         {fetching && (
           <div className="absolute top-0 left-0">
-            <Spinner className="!text-brand-100" />
+            <Spinner className="text-brand-100!" />
           </div>
         )}
         <div className="mt-auto">
@@ -181,7 +181,7 @@ export const EditItem = ({
   setShowDeletedId: (data: number) => void;
 }) => {
   return (
-    <div className="flex justify-between gap-2 border-1 items-start border-brand-200 p-3 rounded-md">
+    <div className="flex justify-between gap-2 border items-start border-brand-200 p-3 rounded-md">
       <div>
         <Text size="xl">
           Название:{` `}

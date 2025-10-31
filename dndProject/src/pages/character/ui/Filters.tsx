@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Control } from 'react-hook-form';
+import { useGetSimpleWorldListQuery } from '@/features/worlds/api';
 import { Input } from '@/components/wrappers/forms/input/Input';
 import { Selector } from '@/components/wrappers/forms/selector/Selector';
 
@@ -9,6 +10,7 @@ interface SelectConfig {
   placeholder?: string;
   multiple?: boolean;
   options: { id: string | number; value: string }[];
+  disabled?: boolean;
 }
 
 interface FilterProps {
@@ -17,20 +19,24 @@ interface FilterProps {
   selectors?: SelectConfig[];
 }
 
-export const worldSelector = {
-  name: 'worldId',
-  placeholder: 'Выберите мир',
-  multiple: false,
-  label: 'Миры',
-  options: [
-    { id: '1', value: 'Долина Гурван-Гол' },
-    { id: '2', value: 'Долина Хан-Тенгри' },
-    { id: '3', value: 'Долина Хан-Тенгри' },
-    { id: '4', value: 'Долина Хан-Тенгри' },
-  ],
-};
-
 export const Filters: React.FC<FilterProps> = ({ control, inputName, selectors = [] }) => {
+  const { data, isLoading } = useGetSimpleWorldListQuery();
+
+  const worldsData =
+    data?.data?.map(({ id, name }) => ({
+      id,
+      value: name,
+    })) || [];
+
+  const worldSelector = {
+    name: 'worldId',
+    placeholder: 'Выберите мир',
+    multiple: false,
+    label: 'Миры',
+    options: worldsData,
+    disabled: worldsData?.length === 0 || isLoading,
+  };
+
   return (
     <div className="flex gap-3 pt-3 pb-6 flex-wrap">
       <Input
@@ -39,18 +45,21 @@ export const Filters: React.FC<FilterProps> = ({ control, inputName, selectors =
         control={control}
         name={inputName}
       />
-      {[...selectors, worldSelector]?.map(({ name, label, placeholder, multiple, options }) => (
-        <Selector
-          className="min-w-[250px] !w-auto flex-1"
-          label={label}
-          key={name}
-          control={control}
-          name={name}
-          placeholder={placeholder}
-          multiple={multiple}
-          options={options}
-        />
-      ))}
+      {[...selectors, worldSelector]?.map(
+        ({ name, label, placeholder, multiple, options, disabled }) => (
+          <Selector
+            className="min-w-[250px] w-auto! flex-1"
+            label={label}
+            key={name}
+            disabled={disabled}
+            control={control}
+            name={name}
+            placeholder={placeholder}
+            multiple={multiple}
+            options={options}
+          />
+        ),
+      )}
     </div>
   );
 };
