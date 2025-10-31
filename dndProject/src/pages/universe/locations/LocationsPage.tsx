@@ -14,7 +14,7 @@ import { Pagination } from '@/components/wrappers/navigation/pagination/Paginati
 export const LocationsPage = () => {
   const { navigatePath } = useNavigatePath();
   const { control, debouncedName } = useSearchByQuery();
-  const { currentPage, limit, onPageChange } = usePagination({ defaultLimit: 40 });
+  const { currentPage, limit, onPageChange } = usePagination({ defaultLimit: 20 });
   const { data, isLoading, isError } = useGetLocationListQuery({
     query: debouncedName,
     page: currentPage,

@@ -14,7 +14,7 @@ import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/A
 export const ClassesPage = () => {
   const { debouncedName, worldId, control } = useDefaultFilters();
   const [openedClass, setOpenedClass] = useState<null | Class>(null);
-  const { currentPage, limit, onPageChange } = usePagination({ defaultLimit: 40 });
+  const { currentPage, limit, onPageChange } = usePagination({ defaultLimit: 20 });
   const { data, isLoading, isError } = useGetClassListQuery({
     query: debouncedName,
     worldId,

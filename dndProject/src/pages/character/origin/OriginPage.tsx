@@ -14,7 +14,7 @@ import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/A
 export const OriginPage = () => {
   const { debouncedName, worldId, control } = useDefaultFilters();
   const [openedOrigin, setOpenedOrigin] = useState<null | Origin>(null);
-  const { currentPage, limit, onPageChange } = usePagination({ defaultLimit: 40 });
+  const { currentPage, limit, onPageChange } = usePagination({ defaultLimit: 20 });
   const { data, isError, isLoading } = useGetOriginListQuery({
     query: debouncedName,
     worldId,
@@ -40,7 +40,7 @@ export const OriginPage = () => {
         </CharacterModalWrapper>
         {!!data?.meta?.total && (
           <Pagination
-            className="mt-10"
+            className="mt-auto"
             onPageChange={onPageChange}
             total={data.meta.total}
             currentPage={currentPage}

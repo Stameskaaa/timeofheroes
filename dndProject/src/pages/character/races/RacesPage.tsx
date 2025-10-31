@@ -13,7 +13,7 @@ import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/A
 
 export const RacesPage = () => {
   const { debouncedName, worldId, control } = useDefaultFilters();
-  const { currentPage, limit, onPageChange } = usePagination({ defaultLimit: 40 });
+  const { currentPage, limit, onPageChange } = usePagination({ defaultLimit: 20 });
   const { data, isLoading, isError } = useGetRaceListQuery({
     query: debouncedName,
     worldId,
@@ -40,7 +40,7 @@ export const RacesPage = () => {
         </CharacterModalWrapper>
         {!!data?.meta?.total && (
           <Pagination
-            className="mt-10"
+            className="mt-auto"
             onPageChange={onPageChange}
             total={data.meta.total}
             currentPage={currentPage}

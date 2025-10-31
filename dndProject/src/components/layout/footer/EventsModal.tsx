@@ -21,7 +21,7 @@ export const EventsModal = () => {
           <Separator
             edgeColor="brand-300"
             edgeEffect="block"
-            className="!h-[1px]"
+            className="h-px!"
             spacing="equalSmall"
           />
           {MOCK_PRODUCTS.map((data) => (

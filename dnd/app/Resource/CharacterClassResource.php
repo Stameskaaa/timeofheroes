@@ -25,7 +25,7 @@ class CharacterClassResource extends JsonResource
             'subclassSkills' => $this->subclass_skills,
             'worlds' => WorldResource::collection($this->whenLoaded('worlds')) ?? [],
             'worldIds' => ($this->worlds ?? collect())->pluck('id'),
-            'spellIds' => ($this->worlds ?? collect())->pluck('id'),
+            'spellIds' => ($this->spells ?? collect())->pluck('id'),
             'createdAt' => $this->created_at?->toDateTimeString(),
             'updatedAt' => $this->updated_at?->toDateTimeString(),
         ];

@@ -31,7 +31,6 @@ const EditRace = () => {
     },
   });
   const { control } = methods;
-  // TODO на simple worlds как и все
   const { data: worlds, isLoading: worldLoading } = useGetSimpleWorldListQuery();
 
   return (

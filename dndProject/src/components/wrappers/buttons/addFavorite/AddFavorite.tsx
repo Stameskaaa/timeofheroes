@@ -27,19 +27,17 @@ export const AddFavorite = ({ type, id }: { type: FavoriteTypes; id: number }) =
     dispatch(toggle({ type, id }));
 
     const name = names[type];
-    let action = '';
+    let action = current ? 'удалён' : 'добавлен';
 
-    if (type === 'class' || type === 'origin' || type === 'race') {
-      action = current ? 'удалён' : favorites[type] ? 'заменён' : 'добавлен';
-    } else {
-      action = current
-        ? 'удалена'
-        : favorites[type].length >= (type === 'traits' ? 10 : 20)
-        ? 'заменена'
-        : 'добавлена';
+    if (type === 'race' || type === 'traits') {
+      action = current ? 'удалена' : 'добавлена';
     }
 
-    toast(`${name} ${action}`);
+    if (type === 'spells' || type === 'origin') {
+      action = current ? 'удалено' : 'добавлено';
+    }
+
+    toast(`${name} успешно ${action}`);
   };
 
   return (

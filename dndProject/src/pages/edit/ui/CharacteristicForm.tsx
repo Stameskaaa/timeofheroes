@@ -40,7 +40,7 @@ export const CharacteristicForm: React.FC<CharacteristicFormProps> = ({
   return (
     <div
       className={classNames(
-        'flex flex-col gap-2 flex-1 border border-brand-200 p-3 rounded-md shrink-1',
+        'flex flex-col gap-2 flex-1 border border-brand-200 p-3 rounded-md shrink',
         className,
       )}>
       <Text color="brand-100" size="lg">
@@ -53,11 +53,11 @@ export const CharacteristicForm: React.FC<CharacteristicFormProps> = ({
         data?.data.map(({ id, name: characteristicName }) => {
           const selectedValue = currentValue?.find((x) => x.id === id)?.value?.toString() ?? '';
           return (
-            <div key={id} className="flex flex-col gap-1 shrink-1">
+            <div key={id} className="flex flex-col gap-1 shrink">
               <Text>{characteristicName}</Text>
               <Selector
                 control={fakeControl}
-                className="!min-w-0 shrink-1"
+                className="min-w-0! shrink"
                 required
                 placeholder="40"
                 name={`${name}-temp-${id}`}

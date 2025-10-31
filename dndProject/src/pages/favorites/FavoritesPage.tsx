@@ -1,10 +1,13 @@
 import { ReactNode } from 'react';
+import classNames from 'classnames';
+import { AccordionContent, AccordionItem } from '@radix-ui/react-accordion';
 import { useFavoriteFetch } from './useFavoriteFetch';
 import { Separator } from '@/components/ui/separator';
 import { Text } from '@/components/wrappers/typography/Text';
 import { ClassContent } from '../character/classes/ClassContent';
 import { RaceContent } from '../character/races/components/RaceContent';
 import { Section } from '@/components/wrappers/sections/section/Section';
+import { AccordionRoot, AccordionTrigger } from '@/components/ui/accordion';
 import { TraitsContent } from '../character/traits/components/TraitsContent';
 import { OriginContent } from '../character/origin/components/OriginContent';
 import { AsyncWrapper } from '@/components/wrappers/asyncWrapper/AsyncWrapper';
@@ -23,40 +26,95 @@ export const FavoritesPage = () => {
       <AsyncWrapper isLoading={isLoading}>
         <div className="flex items-center flex-col gap-10 flex-wrap">
           {classData && (
-            <Container title="Класс">
-              <Text color="brand-100" weight="bold" size="2xl" className="text-center mb-2">
-                Класс
-              </Text>
-              <ClassContent data={classData} />
-            </Container>
+            <AccordionRoot type="single" id="1" collapsible className="w-full">
+              <AccordionItem value={'1'}>
+                <AccordionTrigger
+                  className={
+                    'hover:bg-brand-300 duration-300 px-3 cursor-pointer bg-brand-400 flex justify-between items-center'
+                  }>
+                  <Text size="xl">Класс</Text>
+                </AccordionTrigger>
+                <AccordionContent className={'flex flex-col p-4 gap-4 bg-brand-400'}>
+                  <ItemWrapper>
+                    <ClassContent data={classData} />
+                  </ItemWrapper>
+                </AccordionContent>
+              </AccordionItem>
+            </AccordionRoot>
           )}
           {originData && (
-            <Container title="Происхождение">
-              <Text color="brand-100" size="2xl" className="text-center mb-2">
-                Происхождение
-              </Text>
-              <OriginContent data={originData} />
-            </Container>
+            <AccordionRoot type="single" id="1" collapsible className="w-full">
+              <AccordionItem value={'1'}>
+                <AccordionTrigger
+                  className={
+                    'hover:bg-brand-300 duration-300 px-3 cursor-pointer bg-brand-400 flex justify-between items-center'
+                  }>
+                  <Text size="xl">Происхождение</Text>
+                </AccordionTrigger>
+                <AccordionContent className={'flex flex-col p-4 gap-4 bg-brand-400'}>
+                  <ItemWrapper>
+                    <OriginContent data={originData} />
+                  </ItemWrapper>
+                </AccordionContent>
+              </AccordionItem>
+            </AccordionRoot>
           )}
           {raceData && (
-            <Container title="Раса">
-              <RaceContent data={raceData} />
-            </Container>
+            <AccordionRoot type="single" id="1" collapsible className="w-full">
+              <AccordionItem value={'1'}>
+                <AccordionTrigger
+                  className={
+                    'hover:bg-brand-300 duration-300 px-3 cursor-pointer bg-brand-400 flex justify-between items-center'
+                  }>
+                  <Text size="xl">Раса</Text>
+                </AccordionTrigger>
+                <AccordionContent className={'flex flex-col p-4 gap-4 bg-brand-400'}>
+                  <ItemWrapper className="min-h-[800px]">
+                    <RaceContent data={raceData} />
+                  </ItemWrapper>
+                </AccordionContent>
+              </AccordionItem>
+            </AccordionRoot>
           )}
 
           {traitsData?.data && traitsData?.data?.length > 0 && (
-            <Container title="Черты">
-              {traitsData?.data?.map((data) => (
-                <TraitsContent key={data.id} data={data} />
-              ))}
-            </Container>
+            <AccordionRoot type="single" id="1" collapsible className="w-full">
+              <AccordionItem value={'1'}>
+                <AccordionTrigger
+                  className={
+                    'hover:bg-brand-300 duration-300 px-3 cursor-pointer bg-brand-400 flex justify-between items-center'
+                  }>
+                  <Text size="xl">Черты</Text>
+                </AccordionTrigger>
+                <AccordionContent className={'flex flex-col p-4 gap-4 bg-brand-400'}>
+                  {traitsData?.data?.map((data) => (
+                    <ItemWrapper key={data.id}>
+                      <TraitsContent data={data} />
+                    </ItemWrapper>
+                  ))}
+                </AccordionContent>
+              </AccordionItem>
+            </AccordionRoot>
           )}
+
           {spellsData?.data && spellsData?.data?.length > 0 && (
-            <Container title="Заклинания">
-              {spellsData?.data?.map((data) => (
-                <SpellContent key={data.id} data={data} />
-              ))}
-            </Container>
+            <AccordionRoot type="single" id="2" collapsible className="w-full">
+              <AccordionItem value={'2'}>
+                <AccordionTrigger
+                  className={
+                    'hover:bg-brand-300 duration-300 px-3 cursor-pointer bg-brand-400 flex justify-between items-center'
+                  }>
+                  <Text size="xl">Заклинания</Text>
+                </AccordionTrigger>
+                <AccordionContent className={'flex flex-col p-4 gap-4 bg-brand-400'}>
+                  {spellsData?.data?.map((data) => (
+                    <ItemWrapper key={data.id}>
+                      <SpellContent data={data} />
+                    </ItemWrapper>
+                  ))}
+                </AccordionContent>
+              </AccordionItem>
+            </AccordionRoot>
           )}
         </div>
       </AsyncWrapper>
@@ -64,12 +122,9 @@ export const FavoritesPage = () => {
   );
 };
 
-const Container = ({ children, title }: { children: ReactNode; title: string }) => {
+const ItemWrapper = ({ children, className }: { children: ReactNode; className?: string }) => {
   return (
-    <div className="bg-brand-400 border border-brand-200 max-w-[800px] w-full p-4 rounded-sm">
-      <Text size="2xl" className="text-center mb-4">
-        {title}
-      </Text>
+    <div className={classNames('bg-brand-500 border border-brand-200 p-4 rounded-sm', className)}>
       {children}
     </div>
   );

@@ -14,7 +14,7 @@ import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/A
 export const TraitsPage = () => {
   const [openedTrait, setOpenedTrait] = useState<null | Trait>(null);
   const { control, traitSelector, ...filters } = useTraitsFilters();
-  const { currentPage, limit, onPageChange } = usePagination({ defaultLimit: 40 });
+  const { currentPage, limit, onPageChange } = usePagination({ defaultLimit: 20 });
   const { data, isLoading, isError } = useGetTraitListQuery({
     ...filters,
     limit,
@@ -39,7 +39,7 @@ export const TraitsPage = () => {
         </CharacterModalWrapper>
         {!!data?.meta?.total && (
           <Pagination
-            className="mt-10"
+            className="mt-auto"
             onPageChange={onPageChange}
             total={data.meta.total}
             currentPage={currentPage}

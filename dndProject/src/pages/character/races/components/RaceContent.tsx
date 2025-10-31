@@ -21,7 +21,7 @@ export const RaceContent = ({ data }: { data?: Race | null }) => {
 
   return (
     <AsyncWrapper isError={isError} isLoading={isLoading}>
-      <Section className="h-[1000px]">
+      <Section className="flex-1 flex flex-col">
         <div className="pb-3 flex">
           <Text className="mx-auto" size="xl">
             {resultData?.name}
@@ -29,7 +29,7 @@ export const RaceContent = ({ data }: { data?: Race | null }) => {
         </div>
         <Separator spacing="equalSmall" edgeEffect="block" edgeColor="brand-200" className="mt-0" />
         <Tabs
-          bgClassName="!h-full flex-1 !bg-transparent"
+          bgClassName="flex-1 !bg-transparent"
           defaultTabId={1}
           activeColor="bg-brand-300"
           headerClassName="max-w-[800px] overflow-hidden m-0 !mr-auto"

@@ -13,7 +13,7 @@ import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/A
 
 export const SpellsPage = () => {
   const { control, spellSelectors, ...filters } = useSpellsFilters();
-  const { currentPage, limit, onPageChange } = usePagination({ defaultLimit: 40 });
+  const { currentPage, limit, onPageChange } = usePagination({ defaultLimit: 20 });
   const [openedSpell, setOpenedSpell] = useState<null | Spell>(null);
   const { data, isLoading, isError } = useGetSpellsListQuery({
     ...filters,
@@ -39,7 +39,7 @@ export const SpellsPage = () => {
         </CharacterModalWrapper>
         {!!data?.meta?.total && (
           <Pagination
-            className="mt-10"
+            className="mt-auto"
             onPageChange={onPageChange}
             total={data.meta.total}
             currentPage={currentPage}

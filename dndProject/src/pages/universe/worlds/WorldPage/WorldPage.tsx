@@ -23,7 +23,7 @@ export const WorldPage = () => {
         <Image
           alt="Фотография мира"
           src={data?.src}
-          className="!h-[50vh] md:!h-[60vh] w-full min-w-[800px]"
+          className="h-[50vh]! md:!h-[60vh] w-full min-w-[800px]"
         />
         <div
           className="absolute inset-0"
@@ -44,7 +44,7 @@ export const WorldPage = () => {
         </div>
       </div>
       <Section fixedWidth screen className="flex flex-col gap-14 overflow-hidden">
-        <MarkDownText className="!max-w-[800px] text-justify mx-auto">
+        <MarkDownText className="max-w-[800px]! text-justify mx-auto">
           {data?.mdDescription}
         </MarkDownText>
 
@@ -53,7 +53,7 @@ export const WorldPage = () => {
         {data?.mdHistory && (
           <div className="flex flex-col gap-6">
             <WorldsSectionTitle title="История" />
-            <MarkDownText className="!max-w-[800px] text-justify mx-auto">
+            <MarkDownText className="max-w-[800px]! text-justify mx-auto">
               {data.mdHistory}
             </MarkDownText>
           </div>

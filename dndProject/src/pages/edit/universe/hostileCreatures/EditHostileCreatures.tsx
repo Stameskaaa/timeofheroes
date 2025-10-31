@@ -186,7 +186,7 @@ const EditHostileCreatures = () => {
           title="Характеристики"
         />
 
-        <div className="flex flex-col flex-2 gap-2 justify-start !max-w-[350px] border border-brand-200 p-3 rounded-md ">
+        <div className="flex flex-col flex-2 gap-2 justify-start max-w-[350px]! border border-brand-200 p-3 rounded-md ">
           <Text color="brand-100" size="lg">
             Иммунитеты / Сопротивления
           </Text>

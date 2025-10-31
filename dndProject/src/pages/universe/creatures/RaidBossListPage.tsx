@@ -5,7 +5,7 @@ import { usePagination } from '@/hooks/usePagination';
 
 export const RaidBossListPage = () => {
   const { control, debouncedName } = useSearchByQuery();
-  const { onPageChange, currentPage, limit } = usePagination();
+  const { onPageChange, currentPage, limit } = usePagination({ defaultLimit: 20 });
   const { data, isError, isLoading } = useGetHostileCreaturesListQuery({
     type: 'raidBoss',
     query: debouncedName,

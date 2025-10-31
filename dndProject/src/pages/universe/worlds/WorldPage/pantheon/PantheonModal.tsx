@@ -29,11 +29,11 @@ export const PantheonModal = ({
             <div className="flex flex-col gap-5" key={data.id}>
               <div className="relative flex justify-center overflow-hidden">
                 <Image
-                  className="!h-[300px] border-brand-200 border-[1px] rounded-md"
+                  className="h-[300px]! border-brand-200 border rounded-md"
                   alt={`Фотография бога ${data.name}`}
                   src={data.src}
                 />
-                <OrnamentalDivider className="!absolute" />
+                <OrnamentalDivider className="absolute!" />
                 <Text color="brand-100" className="absolute bottom-0 z-1" weight="bold" size="4xl">
                   {data?.name}
                 </Text>
@@ -44,7 +44,7 @@ export const PantheonModal = ({
                   }}
                 />
               </div>
-              <MarkDownText className="mx-auto text-justify !max-w-[600px]">
+              <MarkDownText className="mx-auto text-justify max-w-[600px]!">
                 {data?.mdContent}
               </MarkDownText>
             </div>

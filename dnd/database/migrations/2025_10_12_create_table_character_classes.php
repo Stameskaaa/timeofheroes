@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->text('start_equipment')->nullable();
             $table->text('md_description')->nullable();
             $table->text('md_table_data')->nullable();
+            $table->string('characteristic_ids')->nullable();
             $table->json('subclass_skills')->nullable();
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();

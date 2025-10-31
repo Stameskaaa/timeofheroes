@@ -24,9 +24,9 @@ const EditOrigin = () => {
       toolSkills: '',
       startEquipment: ['', ''],
       mdDescription: '',
-      features: [],
+      featureIds: [],
       characteristicIds: [],
-      worlds: [],
+      worldIds: [],
     },
   });
   const { control } = methods;
@@ -75,7 +75,7 @@ const EditOrigin = () => {
           label="Миры"
           multiple
           control={control}
-          name={'worlds'}
+          name="worldIds"
           disabled={worldsLoading || worlds?.data.length === 0}
           options={worlds?.data.map(({ id, name }) => ({ id, value: name }))}
         />
@@ -87,7 +87,7 @@ const EditOrigin = () => {
         label="Характеристики"
         control={control}
         multiple
-        name={'characteristicIds'}
+        name="characteristicIds"
         disabled={characteristicsLoading || worlds?.data.length === 0}
         options={characteristic?.data.map(({ id, name }) => ({ id, value: name }))}
       />
@@ -115,7 +115,7 @@ const EditOrigin = () => {
         message="Выберите черту"
         label="Черты"
         control={control}
-        name="features"
+        name="featureIds"
         disabled={traitsLoading || worlds?.data.length === 0}
         options={traits?.data.map(({ id, name }) => ({ id, value: name }))}
       />

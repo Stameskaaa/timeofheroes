@@ -26,12 +26,11 @@ export const CharacterPage = () => {
         animate={{ opacity: 1 }}
         paddingY="medium"
         fixedWidth
-        className={'flex flex-col gap-4'}
-        screen>
+        className={'flex flex-col gap-4 min-h-[80vh]'}>
         {isIdPage ? <BackButton /> : <SubNavigation data={routes} />}
         <AnimatePresence mode="wait">
           <motion.div
-            className={classNames(isIdPage ? 'bg-brand-500' : '', 'flex-1')}
+            className={classNames(isIdPage ? 'bg-brand-500' : '', 'flex-1 flex flex-col gap-4')}
             initial={{ opacity: 0, filter: 'blur(10px)' }}
             animate={{ opacity: 1, filter: 'blur(0px)' }}
             exit={{ opacity: 0, filter: 'blur(10px)' }}

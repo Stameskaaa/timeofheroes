@@ -180,7 +180,7 @@ const EditClass = () => {
         control={control}
       />
 
-      <div className="flex flex-col border-1 border-brand-200 rounded-sm p-4 gap-3">
+      <div className="flex flex-col border border-brand-200 rounded-sm p-4 gap-3">
         <Text className="mb-4">Подклассы</Text>
         {fields.map((field, index) => (
           <div key={field.id} className="flex flex-col items-center gap-2">

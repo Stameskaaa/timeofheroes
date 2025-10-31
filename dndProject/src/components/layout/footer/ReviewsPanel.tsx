@@ -18,7 +18,7 @@ export const ReviewsPanel = () => {
       <Text className="mt-4 px-4 pr-[55px]" size="3xl">
         Отзывы клиентов
       </Text>
-      <Separator edgeEffect="gradient" className="!h-[1px]" spacing="empty" edgeSide="right" />
+      <Separator edgeEffect="gradient" className="h-px!" spacing="empty" edgeSide="right" />
       <div className="flex overflow-y-auto flex-wrap gap-6 px-4">
         {Array.from({ length: 8 }).map((_, i) => (
           <div
