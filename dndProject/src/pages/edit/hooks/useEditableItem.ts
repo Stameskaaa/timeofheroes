@@ -80,10 +80,10 @@ export function useEditableForm<T extends { id?: number | null } & FieldValues>(
         .then(() => setOpen(false))
         .catch(() => toast.error('Произошла ошибка'));
     } else {
-      await create(payload);
-      // .unwrap()
-      // .then(() => setOpen(false))
-      // .catch(() => toast.error('Произошла ошибка'));
+      await create(payload)
+        .unwrap()
+        .then(() => setOpen(false))
+        .catch(() => toast.error('Произошла ошибка'));
     }
   }
 
@@ -111,8 +111,7 @@ export function useEditableForm<T extends { id?: number | null } & FieldValues>(
     open,
     setOpen,
     setEditItem,
-    submitAction: submitAction,
-    // submitAction: handleSubmit(submitAction),
+    submitAction: handleSubmit(submitAction),
     actions,
     loadDeletedId,
     inputControl: control,
