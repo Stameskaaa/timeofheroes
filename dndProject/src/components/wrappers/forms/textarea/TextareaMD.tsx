@@ -18,7 +18,7 @@ export const TextareaMD: React.FC<TextareaProps> = ({ control, name, className, 
   return (
     <div className="flex flex-col gap-2 w-full">
       <Textarea
-        className={classNames('h-[240px]', className)}
+        className={classNames('h-60', className)}
         control={control}
         name={name}
         actions={[
@@ -43,7 +43,7 @@ export const TextareaMD: React.FC<TextareaProps> = ({ control, name, className, 
       <AnimatePresence mode="wait">
         {isShowed && (
           <motion.div
-            className="overflow-y-auto overscroll-contain border-1 rounded-md p-2 border-brand-200"
+            className="overflow-y-auto overscroll-contain border rounded-md p-2 border-brand-200"
             layout
             transition={{ duration: 0.3 }}
             initial={{ opacity: 0, height: 0 }}

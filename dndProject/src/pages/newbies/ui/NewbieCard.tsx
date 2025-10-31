@@ -36,8 +36,8 @@ export const NewbieCard = ({ title, description, links }: NewbieCardProps) => {
 
       {links && links?.length > 0 && (
         <div className="flex gap-2 flex-wrap w-full mt-auto">
-          {links?.map(({ text, url }) => (
-            <Button size="sm" variant="secondary" onClick={() => handleClick(url)}>
+          {links?.map(({ text, url }, i) => (
+            <Button size="sm" key={i} variant="secondary" onClick={() => handleClick(url)}>
               {text}
             </Button>
           ))}

@@ -28,7 +28,7 @@ export const NewsPage = () => {
         <Input name="name" placeholder="Введите название новости" control={control} />
         <Separator edgeEffect="block" className="mb-6" edgeColor="brand-200" spacing="empty" />
 
-        <div className="flex flex-wrap justify-center gap-6">
+        <div className="flex flex-wrap gap-6">
           {data?.data?.map((news, index) => (
             <motion.div
               className="grow basis-[300px] max-w-[600px]"

@@ -15,6 +15,10 @@ export const formatDateTimeDetailed = (dateString: string | null | undefined): s
       return '';
     }
 
+    const timezoneOffsetMs = date.getTimezoneOffset() * 60 * 1000;
+
+    const adjustedDate = new Date(date.getTime() - timezoneOffsetMs);
+
     const months = [
       'января',
       'февраля',
@@ -30,10 +34,10 @@ export const formatDateTimeDetailed = (dateString: string | null | undefined): s
       'декабря',
     ];
 
-    const day = date.getDate();
-    const month = months[date.getMonth()];
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const day = adjustedDate.getDate();
+    const month = months[adjustedDate.getMonth()];
+    const hours = adjustedDate.getHours().toString().padStart(2, '0');
+    const minutes = adjustedDate.getMinutes().toString().padStart(2, '0');
 
     return `${day} ${month} в ${hours}:${minutes}`;
   } catch (error) {

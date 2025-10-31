@@ -28,7 +28,7 @@ export const CreatureCard: React.FC<CreatureCardProps> = ({ creatureData }) => {
       }
       className="bg-brand-400 border cursor-pointer border-brand-200 rounded-lg hover:border-brand-100 transition-colors duration-300 overflow-hidden shadow-lg">
       <div className="max-h-[400px] w-full relative overflow-hidden bg-brand-300">
-        <Image src={creatureData.src} alt="картинка существа" className="!h-[400px]" />
+        <Image src={creatureData.src} alt="картинка существа" className="h-[400px]!" />
         <div
           className="absolute inset-0"
           style={{ background: 'linear-gradient(to top, #1c2224 0%, transparent 40%)' }}
@@ -36,7 +36,7 @@ export const CreatureCard: React.FC<CreatureCardProps> = ({ creatureData }) => {
         {creatureData.name && (
           <Text
             color="brand-100"
-            className="absolute top-0 left-1/2 -translate-x-1/2 text-center min-w-[280px] text-wrap bg-brand-400 rounded-b-lg px-2 py-[2px]"
+            className="absolute top-0 left-1/2 -translate-x-1/2 text-center min-w-[280px] text-wrap bg-brand-400 rounded-b-lg px-2 py-0.5"
             size="lg">
             {creatureData.name}
           </Text>
