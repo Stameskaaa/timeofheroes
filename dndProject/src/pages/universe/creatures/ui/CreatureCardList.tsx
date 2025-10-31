@@ -37,7 +37,7 @@ export const CreationCardList: React.FC<CreationCardListProps> = ({
   limit,
 }) => {
   return (
-    <Section paddingY="medium" fixedWidth screen className="flex flex-col  gap-6">
+    <Section paddingY="medium" fixedWidth className="flex flex-col min-h-[80vh] gap-6">
       {title && (
         <Text as="span" className="mx-auto" size="3xl">
           {title}
@@ -46,7 +46,7 @@ export const CreationCardList: React.FC<CreationCardListProps> = ({
       <Input name="name" placeholder="Введите имя существа" control={control} />
       <Separator edgeEffect="block" className="mb-6" edgeColor="brand-200" spacing="empty" />
       <AsyncWrapper isLoading={isLoading} isError={isError}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-6">
           {creatureData?.map((data, index) => (
             <motion.div
               key={index}
@@ -59,7 +59,7 @@ export const CreationCardList: React.FC<CreationCardListProps> = ({
         </div>
         {!!meta?.total && (
           <Pagination
-            className="mt-10"
+            className="mt-auto"
             onPageChange={onPageChange}
             total={meta?.total}
             currentPage={currentPage}

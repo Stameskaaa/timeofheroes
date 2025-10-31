@@ -42,7 +42,7 @@ export const ClassesPage = () => {
         </CharacterModalWrapper>
         {!!data?.meta?.total && (
           <Pagination
-            className="mt-10"
+            className="mt-auto"
             onPageChange={onPageChange}
             total={data.meta.total}
             currentPage={currentPage}

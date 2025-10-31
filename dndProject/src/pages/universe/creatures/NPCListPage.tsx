@@ -5,7 +5,7 @@ import { usePagination } from '@/hooks/usePagination';
 
 export const NPCListPage = () => {
   const { control, debouncedName } = useSearchByQuery();
-  const { onPageChange, currentPage, limit } = usePagination();
+  const { onPageChange, currentPage, limit } = usePagination({ defaultLimit: 12 });
   const { data, isLoading, isError } = useGetNPCListQuery({
     query: debouncedName,
     page: currentPage,

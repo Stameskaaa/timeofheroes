@@ -80,7 +80,7 @@ class WorldController extends Controller
             'races',
             'countries',
             'locations',
-            'locations.hostileCreatures',
+            // 'locations.hostileCreatures',
             'npcs',
         ])->find($id);
 

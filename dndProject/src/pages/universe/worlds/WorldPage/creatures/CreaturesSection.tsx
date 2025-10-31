@@ -39,15 +39,18 @@ export const CreaturesSection = ({ data }: { data?: World | null }) => {
         <div className="flex flex-col gap-6">
           <WorldsSectionTitle type="gradient" title="Бестии" />
           <Carousel
-            slides={creatureLists?.monsters.map(({ id, shortDescription, src, name }) => (
-              <ImageRevealCard
-                key={id}
-                onClick={() => navigatePath(`/universe/bestiary/${id}`)}
-                name={name}
-                description={shortDescription}
-                src={src}
-              />
-            ))}
+            options={{ dragFree: true }}
+            slides={(creatureLists?.monsters ?? [])
+              .slice(0, 16)
+              .map(({ id, shortDescription, src, name }) => (
+                <ImageRevealCard
+                  key={id}
+                  onClick={() => navigatePath(`/universe/bestiary/${id}`)}
+                  name={name}
+                  description={shortDescription}
+                  src={src}
+                />
+              ))}
           />
         </div>
       )}
@@ -55,13 +58,14 @@ export const CreaturesSection = ({ data }: { data?: World | null }) => {
         <div className="flex flex-col gap-6">
           <WorldsSectionTitle type="gradient" title="Личности" />
           <Carousel
-            slides={data?.npcs?.map((data) => (
+            options={{ dragFree: true }}
+            slides={(data?.npcs ?? []).slice(0, 16).map((data) => (
               <ImageRevealCard
-                key={data?.id}
-                onClick={() => navigatePath(`/universe/npc/${data?.id}`)}
-                name={data?.name}
-                description={data?.shortDescription}
-                src={data?.src}
+                key={data?.id || Math.random()}
+                onClick={() => data?.id && navigatePath(`/universe/npc/${data.id}`)}
+                name={data?.name || 'Неизвестно'}
+                description={data?.shortDescription || ''}
+                src={data?.src || ''}
               />
             ))}
           />
@@ -72,14 +76,17 @@ export const CreaturesSection = ({ data }: { data?: World | null }) => {
         <div className="flex flex-col gap-6">
           <WorldsSectionTitle type="gradient" title="Рейдбоссы" />
           <Carousel
-            slides={creatureLists?.raidBosses.map(({ id, name, src, shortDescription }) => (
-              <ImageRevealCard
-                onClick={() => navigatePath(`/universe/raidbosses/${id}`)}
-                name={name}
-                description={shortDescription}
-                src={src}
-              />
-            ))}
+            options={{ dragFree: true }}
+            slides={(creatureLists?.raidBosses ?? [])
+              .slice(0, 16)
+              .map(({ id, name, src, shortDescription }) => (
+                <ImageRevealCard
+                  onClick={() => navigatePath(`/universe/raidbosses/${id}`)}
+                  name={name}
+                  description={shortDescription}
+                  src={src}
+                />
+              ))}
           />
         </div>
       )}

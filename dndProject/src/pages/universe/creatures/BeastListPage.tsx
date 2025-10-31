@@ -6,7 +6,7 @@ import { AsyncWrapper } from '@/components/wrappers/asyncWrapper/AsyncWrapper';
 
 export const BeastListPage = () => {
   const { control, debouncedName } = useSearchByQuery();
-  const { onPageChange, currentPage, limit } = usePagination();
+  const { onPageChange, currentPage, limit } = usePagination({ defaultLimit: 12 });
   const { data, isError, isLoading } = useGetHostileCreaturesListQuery({
     type: 'monster',
     query: debouncedName,

@@ -12,7 +12,7 @@ export const AsyncWrapper: React.FC<AsyncWrapperProps> = ({ isLoading, isError, 
   if (isLoading) {
     return (
       <div className="flex justify-center w-full h-screen items-center p-4">
-        <Spinner size={35} className="m-auto !text-brand-100" />
+        <Spinner size={35} className="m-auto text-brand-100!" />
       </div>
     );
   }

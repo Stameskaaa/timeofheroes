@@ -14,7 +14,7 @@ import { Pagination } from '@/components/wrappers/navigation/pagination/Paginati
 export const LocationsPage = () => {
   const { navigatePath } = useNavigatePath();
   const { control, debouncedName } = useSearchByQuery();
-  const { currentPage, limit, onPageChange } = usePagination({ defaultLimit: 20 });
+  const { currentPage, limit, onPageChange } = usePagination({ defaultLimit: 12 });
   const { data, isLoading, isError } = useGetLocationListQuery({
     query: debouncedName,
     page: currentPage,
@@ -22,7 +22,10 @@ export const LocationsPage = () => {
   });
 
   return (
-    <Section paddingY="medium" className="flex flex-col overflow-x-hidden gap-6" screen fixedWidth>
+    <Section
+      paddingY="medium"
+      className="flex flex-col overflow-x-hidden gap-6 min-h-[80vh]"
+      fixedWidth>
       <Text className="mx-auto" size="3xl">
         Локации
       </Text>
@@ -49,7 +52,7 @@ export const LocationsPage = () => {
         </div>
         {!!data?.meta?.total && (
           <Pagination
-            className="mt-10"
+            className="mt-auto"
             onPageChange={onPageChange}
             total={data.meta.total}
             currentPage={currentPage}
